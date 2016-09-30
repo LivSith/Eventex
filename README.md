@@ -2,6 +2,9 @@
 
 Sistema de Eventos encomendado pela Morena.
 
+[![Build Status](https://travis-ci.org/LivSith/Eventex.svg?branch=master)](https://travis-ci.org/LivSith/Eventex)
+[![Code Health](https://landscape.io/github/LivSith/Eventex/master/landscape.svg?style=flat)](https://landscape.io/github/LivSith/Eventex/master)
+
 ## Como desenvolver?
 
 1. Clone o repositório.
