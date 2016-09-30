@@ -474,7 +474,7 @@ are refs specified on the command line in addition to this
 option, then the refs from stdin are processed after those
 on the command line.</p>
 <div class="paragraph">
-<p>If <em>--stateless-rpc</em> is specified together with this option then
+<p>If <code>--stateless-rpc</code> is specified together with this option then
 the list of refs must be in packet format (pkt-line). Each ref must
 be in a separate packet, and the list must end with a flush packet.</p>
 </div>
@@ -482,7 +482,7 @@ be in a separate packet, and the list must end with a flush packet.</p>
 <dt class="hdlist1">-q</dt>
 <dt class="hdlist1">--quiet</dt>
 <dd>
-<p>Pass <em>-q</em> flag to <em>git unpack-objects</em>; this makes the
+<p>Pass <code>-q</code> flag to <em>git unpack-objects</em>; this makes the
 cloning process less verbose.</p>
 </dd>
 <dt class="hdlist1">-k</dt>
@@ -550,6 +550,11 @@ self-contained and connected.</p>
 <p>The remote heads to update from. This is relative to
 $GIT_DIR (e.g. "HEAD", "refs/heads/master").  When
 unspecified, update from all heads the remote side has.</p>
+<div class="paragraph">
+<p>If the remote has enabled the options <code>uploadpack.allowTipSHA1InWant</code> or
+<code>uploadpack.allowReachableSHA1InWant</code>, they may alternatively be 40-hex
+sha1s present on the remote.</p>
+</div>
 </dd>
 </dl>
 </div>
@@ -574,7 +579,7 @@ unspecified, update from all heads the remote side has.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

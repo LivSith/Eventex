@@ -92,6 +92,7 @@ mingw64/libexec/git-core/git-prune.exe
 mingw64/libexec/git-core/git-pull.exe
 mingw64/libexec/git-core/git-push.exe
 mingw64/libexec/git-core/git-read-tree.exe
+mingw64/libexec/git-core/git-rebase--helper.exe
 mingw64/libexec/git-core/git-receive-pack.exe
 mingw64/libexec/git-core/git-reflog.exe
 mingw64/libexec/git-core/git-remote-ext.exe
@@ -140,3 +141,4 @@ mingw64/libexec/git-core/git-worktree.exe
 mingw64/libexec/git-core/git-write-tree.exe
 mingw64/libexec/git-core/git.exe
 mingw64/share/git/compat-bash.exe
+mingw64/share/git/git-wrapper.exe

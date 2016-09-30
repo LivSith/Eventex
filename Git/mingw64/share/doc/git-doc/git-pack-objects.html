@@ -544,14 +544,15 @@ repositories with a mix of large and small objects to not run
 out of memory with a large window, but still be able to take
 advantage of the large window for the smaller objects.  The
 size can be suffixed with "k", "m", or "g".
-<code>--window-memory=0</code> makes memory usage unlimited, which is the
-default.</p>
+<code>--window-memory=0</code> makes memory usage unlimited.  The default
+is taken from the <code>pack.windowMemory</code> configuration variable.</p>
 </dd>
 <dt class="hdlist1">--max-pack-size=&lt;n&gt;</dt>
 <dd>
 <p>Maximum size of each output pack file. The size can be suffixed with
 "k", "m", or "g". The minimum size allowed is limited to 1 MiB.
-If specified,  multiple packfiles may be created.
+If specified, multiple packfiles may be created, which also
+prevents the creation of a bitmap index.
 The default is unlimited, unless the config variable
 <code>pack.packSizeLimit</code> is set.</p>
 </dd>
@@ -715,7 +716,7 @@ nevertheless.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

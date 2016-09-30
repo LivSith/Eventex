@@ -459,8 +459,8 @@ individual Git commands with "git help command".  <a href="gitcli.html">gitcli</
 manual page gives you an overview of the command-line command syntax.</p>
 </div>
 <div class="paragraph">
-<p>Formatted and hyperlinked version of the latest Git documentation
-can be viewed at <code>http://git-htmldocs.googlecode.com/git/git.html</code>.</p>
+<p>A formatted and hyperlinked copy of the latest Git documentation
+can be viewed at <code>https://git.github.io/htmldocs/git.html</code>.</p>
 </div>
 </div>
 </div>
@@ -476,7 +476,7 @@ can be viewed at <code>http://git-htmldocs.googlecode.com/git/git.html</code>.</
 <dt class="hdlist1">--help</dt>
 <dd>
 <p>Prints the synopsis and a list of the most commonly used
-commands. If the option <em>--all</em> or <em>-a</em> is given then all
+commands. If the option <code>--all</code> or <code>-a</code> is given then all
 available commands are printed. If a Git command is named this
 option will bring up the manual page for that command.</p>
 <div class="paragraph">
@@ -555,7 +555,7 @@ below).</p>
 <dt class="hdlist1">--git-dir=&lt;path&gt;</dt>
 <dd>
 <p>Set the path to the repository. This can also be controlled by
-setting the GIT_DIR environment variable. It can be an absolute
+setting the <code>GIT_DIR</code> environment variable. It can be an absolute
 path or relative path to current working directory.</p>
 </dd>
 <dt class="hdlist1">--work-tree=&lt;path&gt;</dt>
@@ -1447,27 +1447,27 @@ Git so take care if using a foreign front-end.</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><em>GIT_INDEX_FILE</em></dt>
+<dt class="hdlist1"><code>GIT_INDEX_FILE</code></dt>
 <dd>
 <p>This environment allows the specification of an alternate
 index file. If not specified, the default of <code>$GIT_DIR/index</code>
 is used.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_INDEX_VERSION</em></dt>
+<dt class="hdlist1"><code>GIT_INDEX_VERSION</code></dt>
 <dd>
 <p>This environment variable allows the specification of an index
 version for new repositories.  It won&#8217;t affect existing index
 files.  By default index file version 2 or 3 is used. See
 <a href="git-update-index.html">git-update-index</a>(1) for more information.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_OBJECT_DIRECTORY</em></dt>
+<dt class="hdlist1"><code>GIT_OBJECT_DIRECTORY</code></dt>
 <dd>
 <p>If the object storage directory is specified via this
 environment variable then the sha1 directories are created
 underneath - otherwise the default <code>$GIT_DIR/objects</code>
 directory is used.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_ALTERNATE_OBJECT_DIRECTORIES</em></dt>
+<dt class="hdlist1"><code>GIT_ALTERNATE_OBJECT_DIRECTORIES</code></dt>
 <dd>
 <p>Due to the immutable nature of Git objects, old objects can be
 archived into shared, read-only directories. This variable
@@ -1475,25 +1475,25 @@ specifies a ":" separated (on Windows ";" separated) list
 of Git object directories which can be used to search for Git
 objects. New objects will not be written to these directories.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_DIR</em></dt>
+<dt class="hdlist1"><code>GIT_DIR</code></dt>
 <dd>
-<p>If the <em>GIT_DIR</em> environment variable is set then it
+<p>If the <code>GIT_DIR</code> environment variable is set then it
 specifies a path to use instead of the default <code>.git</code>
 for the base of the repository.
-The <em>--git-dir</em> command-line option also sets this value.</p>
+The <code>--git-dir</code> command-line option also sets this value.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_WORK_TREE</em></dt>
+<dt class="hdlist1"><code>GIT_WORK_TREE</code></dt>
 <dd>
 <p>Set the path to the root of the working tree.
-This can also be controlled by the <em>--work-tree</em> command-line
+This can also be controlled by the <code>--work-tree</code> command-line
 option and the core.worktree configuration variable.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_NAMESPACE</em></dt>
+<dt class="hdlist1"><code>GIT_NAMESPACE</code></dt>
 <dd>
 <p>Set the Git namespace; see <a href="gitnamespaces.html">gitnamespaces</a>(7) for details.
-The <em>--namespace</em> command-line option also sets this value.</p>
+The <code>--namespace</code> command-line option also sets this value.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_CEILING_DIRECTORIES</em></dt>
+<dt class="hdlist1"><code>GIT_CEILING_DIRECTORIES</code></dt>
 <dd>
 <p>This should be a colon-separated list of absolute paths.  If
 set, it is a list of directories that Git should not chdir up
@@ -1507,20 +1507,20 @@ directory.  However, if even this access is slow, you
 can add an empty entry to the list to tell Git that the
 subsequent entries are not symlinks and needn&#8217;t be resolved;
 e.g.,
-<em>GIT_CEILING_DIRECTORIES=/maybe/symlink::/very/slow/non/symlink</em>.</p>
+<code>GIT_CEILING_DIRECTORIES=/maybe/symlink::/very/slow/non/symlink</code>.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_DISCOVERY_ACROSS_FILESYSTEM</em></dt>
+<dt class="hdlist1"><code>GIT_DISCOVERY_ACROSS_FILESYSTEM</code></dt>
 <dd>
 <p>When run in a directory that does not have ".git" repository
 directory, Git tries to find such a directory in the parent
 directories to find the top of the working tree, but by default it
 does not cross filesystem boundaries.  This environment variable
 can be set to true to tell Git not to stop at filesystem
-boundaries.  Like <em>GIT_CEILING_DIRECTORIES</em>, this will not affect
-an explicit repository directory set via <em>GIT_DIR</em> or on the
+boundaries.  Like <code>GIT_CEILING_DIRECTORIES</code>, this will not affect
+an explicit repository directory set via <code>GIT_DIR</code> or on the
 command line.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_COMMON_DIR</em></dt>
+<dt class="hdlist1"><code>GIT_COMMON_DIR</code></dt>
 <dd>
 <p>If this variable is set to a path, non-worktree files that are
 normally in $GIT_DIR will be taken from this path
@@ -1537,12 +1537,12 @@ variables such as GIT_INDEX_FILE, GIT_OBJECT_DIRECTORY&#8230;&#8203;</p>
 <h3 id="_git_commits">Git Commits</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><em>GIT_AUTHOR_NAME</em></dt>
-<dt class="hdlist1"><em>GIT_AUTHOR_EMAIL</em></dt>
-<dt class="hdlist1"><em>GIT_AUTHOR_DATE</em></dt>
-<dt class="hdlist1"><em>GIT_COMMITTER_NAME</em></dt>
-<dt class="hdlist1"><em>GIT_COMMITTER_EMAIL</em></dt>
-<dt class="hdlist1"><em>GIT_COMMITTER_DATE</em></dt>
+<dt class="hdlist1"><code>GIT_AUTHOR_NAME</code></dt>
+<dt class="hdlist1"><code>GIT_AUTHOR_EMAIL</code></dt>
+<dt class="hdlist1"><code>GIT_AUTHOR_DATE</code></dt>
+<dt class="hdlist1"><code>GIT_COMMITTER_NAME</code></dt>
+<dt class="hdlist1"><code>GIT_COMMITTER_EMAIL</code></dt>
+<dt class="hdlist1"><code>GIT_COMMITTER_DATE</code></dt>
 <dt class="hdlist1"><em>EMAIL</em></dt>
 <dd>
 <p>see <a href="git-commit-tree.html">git-commit-tree</a>(1)</p>
@@ -1554,19 +1554,19 @@ variables such as GIT_INDEX_FILE, GIT_OBJECT_DIRECTORY&#8230;&#8203;</p>
 <h3 id="_git_diffs">Git Diffs</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><em>GIT_DIFF_OPTS</em></dt>
+<dt class="hdlist1"><code>GIT_DIFF_OPTS</code></dt>
 <dd>
 <p>Only valid setting is "--unified=??" or "-u??" to set the
 number of context lines shown when a unified diff is created.
 This takes precedence over any "-U" or "--unified" option
 value passed on the Git diff command line.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_EXTERNAL_DIFF</em></dt>
+<dt class="hdlist1"><code>GIT_EXTERNAL_DIFF</code></dt>
 <dd>
-<p>When the environment variable <em>GIT_EXTERNAL_DIFF</em> is set, the
+<p>When the environment variable <code>GIT_EXTERNAL_DIFF</code> is set, the
 program named by it is called, instead of the diff invocation
 described above.  For a path that is added, removed, or modified,
-       <em>GIT_EXTERNAL_DIFF</em> is called with 7 parameters:</p>
+<code>GIT_EXTERNAL_DIFF</code> is called with 7 parameters:</p>
 <div class="literalblock">
 <div class="content">
 <pre>path old-file old-hex old-mode new-file new-hex new-mode</pre>
@@ -1592,23 +1592,23 @@ contents of &lt;old|new&gt;,</p>
 <p>The file parameters can point at the user&#8217;s working file
 (e.g. <code>new-file</code> in "git-diff-files"), <code>/dev/null</code> (e.g. <code>old-file</code>
 when a new file is added), or a temporary file (e.g. <code>old-file</code> in the
-index).  <em>GIT_EXTERNAL_DIFF</em> should not worry about unlinking the
-temporary file --- it is removed when <em>GIT_EXTERNAL_DIFF</em> exits.</p>
+index).  <code>GIT_EXTERNAL_DIFF</code> should not worry about unlinking the
+temporary file --- it is removed when <code>GIT_EXTERNAL_DIFF</code> exits.</p>
 </div>
 <div class="paragraph">
-<p>For a path that is unmerged, <em>GIT_EXTERNAL_DIFF</em> is called with 1
+<p>For a path that is unmerged, <code>GIT_EXTERNAL_DIFF</code> is called with 1
 parameter, &lt;path&gt;.</p>
 </div>
 <div class="paragraph">
-<p>For each path <em>GIT_EXTERNAL_DIFF</em> is called, two environment variables,
-<em>GIT_DIFF_PATH_COUNTER</em> and <em>GIT_DIFF_PATH_TOTAL</em> are set.</p>
+<p>For each path <code>GIT_EXTERNAL_DIFF</code> is called, two environment variables,
+<code>GIT_DIFF_PATH_COUNTER</code> and <code>GIT_DIFF_PATH_TOTAL</code> are set.</p>
 </div>
 </dd>
-<dt class="hdlist1"><em>GIT_DIFF_PATH_COUNTER</em></dt>
+<dt class="hdlist1"><code>GIT_DIFF_PATH_COUNTER</code></dt>
 <dd>
 <p>A 1-based counter incremented by one for every path.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_DIFF_PATH_TOTAL</em></dt>
+<dt class="hdlist1"><code>GIT_DIFF_PATH_TOTAL</code></dt>
 <dd>
 <p>The total number of paths.</p>
 </dd>
@@ -1619,28 +1619,28 @@ parameter, &lt;path&gt;.</p>
 <h3 id="_other">other</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><em>GIT_MERGE_VERBOSITY</em></dt>
+<dt class="hdlist1"><code>GIT_MERGE_VERBOSITY</code></dt>
 <dd>
 <p>A number controlling the amount of output shown by
 the recursive merge strategy.  Overrides merge.verbosity.
 See <a href="git-merge.html">git-merge</a>(1)</p>
 </dd>
-<dt class="hdlist1"><em>GIT_PAGER</em></dt>
+<dt class="hdlist1"><code>GIT_PAGER</code></dt>
 <dd>
 <p>This environment variable overrides <code>$PAGER</code>. If it is set
 to an empty string or to the value "cat", Git will not launch
 a pager.  See also the <code>core.pager</code> option in
 <a href="git-config.html">git-config</a>(1).</p>
 </dd>
-<dt class="hdlist1"><em>GIT_EDITOR</em></dt>
+<dt class="hdlist1"><code>GIT_EDITOR</code></dt>
 <dd>
 <p>This environment variable overrides <code>$EDITOR</code> and <code>$VISUAL</code>.
 It is used by several Git commands when, on interactive mode,
 an editor is to be launched. See also <a href="git-var.html">git-var</a>(1)
 and the <code>core.editor</code> option in <a href="git-config.html">git-config</a>(1).</p>
 </dd>
-<dt class="hdlist1"><em>GIT_SSH</em></dt>
-<dt class="hdlist1"><em>GIT_SSH_COMMAND</em></dt>
+<dt class="hdlist1"><code>GIT_SSH</code></dt>
+<dt class="hdlist1"><code>GIT_SSH_COMMAND</code></dt>
 <dd>
 <p>If either of these environment variables is set then <em>git fetch</em>
 and <em>git push</em> will use the specified command instead of <em>ssh</em>
@@ -1648,7 +1648,7 @@ when they need to connect to a remote system.
 The command will be given exactly two or four arguments: the
 <em>username@host</em> (or just <em>host</em>) from the URL and the shell
 command to execute on that remote system, optionally preceded by
-<em>-p</em> (literally) and the <em>port</em> from the URL when it specifies
+<code>-p</code> (literally) and the <em>port</em> from the URL when it specifies
 something other than the default SSH port.</p>
 <div class="paragraph">
 <p><code>$GIT_SSH_COMMAND</code> takes precedence over <code>$GIT_SSH</code>, and is interpreted
@@ -1663,20 +1663,20 @@ personal <code>.ssh/config</code> file.  Please consult your ssh documentation
 for further details.</p>
 </div>
 </dd>
-<dt class="hdlist1"><em>GIT_ASKPASS</em></dt>
+<dt class="hdlist1"><code>GIT_ASKPASS</code></dt>
 <dd>
 <p>If this environment variable is set, then Git commands which need to
 acquire passwords or passphrases (e.g. for HTTP or IMAP authentication)
 will call this program with a suitable prompt as command-line argument
-and read the password from its STDOUT. See also the <em>core.askPass</em>
+and read the password from its STDOUT. See also the <code>core.askPass</code>
 option in <a href="git-config.html">git-config</a>(1).</p>
 </dd>
-<dt class="hdlist1"><em>GIT_TERMINAL_PROMPT</em></dt>
+<dt class="hdlist1"><code>GIT_TERMINAL_PROMPT</code></dt>
 <dd>
 <p>If this environment variable is set to <code>0</code>, git will not prompt
 on the terminal (e.g., when asking for HTTP authentication).</p>
 </dd>
-<dt class="hdlist1"><em>GIT_CONFIG_NOSYSTEM</em></dt>
+<dt class="hdlist1"><code>GIT_CONFIG_NOSYSTEM</code></dt>
 <dd>
 <p>Whether to skip reading settings from the system-wide
 <code>$(prefix)/etc/gitconfig</code> file (and on Windows, also from the
@@ -1686,7 +1686,7 @@ predictable environment for a picky script, or you can set it
 temporarily to avoid using a buggy <code>/etc/gitconfig</code> file while
 waiting for someone with sufficient permissions to fix it.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_FLUSH</em></dt>
+<dt class="hdlist1"><code>GIT_FLUSH</code></dt>
 <dd>
 <p>If this environment variable is set to "1", then commands such
 as <em>git blame</em> (in incremental mode), <em>git rev-list</em>, <em>git log</em>,
@@ -1698,7 +1698,7 @@ using completely buffered I/O.   If this environment variable is
 not set, Git will choose buffered or record-oriented flushing
 based on whether stdout appears to be redirected to a file or not.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_TRACE</em></dt>
+<dt class="hdlist1"><code>GIT_TRACE</code></dt>
 <dd>
 <p>Enables general trace messages, e.g. alias expansion, built-in
 command execution and external command execution.</p>
@@ -1724,23 +1724,23 @@ into it.</p>
 "false" (case insensitive) disables trace messages.</p>
 </div>
 </dd>
-<dt class="hdlist1"><em>GIT_TRACE_PACK_ACCESS</em></dt>
+<dt class="hdlist1"><code>GIT_TRACE_PACK_ACCESS</code></dt>
 <dd>
 <p>Enables trace messages for all accesses to any packs. For each
 access, the pack file name and an offset in the pack is
 recorded. This may be helpful for troubleshooting some
 pack-related performance problems.
-See <em>GIT_TRACE</em> for available trace output options.</p>
+See <code>GIT_TRACE</code> for available trace output options.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_TRACE_PACKET</em></dt>
+<dt class="hdlist1"><code>GIT_TRACE_PACKET</code></dt>
 <dd>
 <p>Enables trace messages for all packets coming in or out of a
 given program. This can help with debugging object negotiation
 or other protocol issues. Tracing is turned off at a packet
-starting with "PACK" (but see <em>GIT_TRACE_PACKFILE</em> below).
-See <em>GIT_TRACE</em> for available trace output options.</p>
+starting with "PACK" (but see <code>GIT_TRACE_PACKFILE</code> below).
+See <code>GIT_TRACE</code> for available trace output options.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_TRACE_PACKFILE</em></dt>
+<dt class="hdlist1"><code>GIT_TRACE_PACKFILE</code></dt>
 <dd>
 <p>Enables tracing of packfiles sent or received by a
 given program. Unlike other trace output, this trace is
@@ -1753,25 +1753,34 @@ the terminal or mixing it with other trace output.</p>
 of clones and fetches.</p>
 </div>
 </dd>
-<dt class="hdlist1"><em>GIT_TRACE_PERFORMANCE</em></dt>
+<dt class="hdlist1"><code>GIT_TRACE_PERFORMANCE</code></dt>
 <dd>
 <p>Enables performance related trace messages, e.g. total execution
 time of each Git command.
-See <em>GIT_TRACE</em> for available trace output options.</p>
+See <code>GIT_TRACE</code> for available trace output options.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_TRACE_SETUP</em></dt>
+<dt class="hdlist1"><code>GIT_TRACE_SETUP</code></dt>
 <dd>
 <p>Enables trace messages printing the .git, working tree and current
 working directory after Git has completed its setup phase.
-See <em>GIT_TRACE</em> for available trace output options.</p>
+See <code>GIT_TRACE</code> for available trace output options.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_TRACE_SHALLOW</em></dt>
+<dt class="hdlist1"><code>GIT_TRACE_SHALLOW</code></dt>
 <dd>
 <p>Enables trace messages that can help debugging fetching /
 cloning of shallow repositories.
-See <em>GIT_TRACE</em> for available trace output options.</p>
+See <code>GIT_TRACE</code> for available trace output options.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_LITERAL_PATHSPECS</em></dt>
+<dt class="hdlist1"><code>GIT_TRACE_CURL</code></dt>
+<dd>
+<p>Enables a curl full trace dump of all incoming and outgoing data,
+including descriptive information, of the git transport protocol.
+This is similar to doing curl <code>--trace-ascii</code> on the command line.
+This option overrides setting the <code>GIT_CURL_VERBOSE</code> environment
+variable.
+See <code>GIT_TRACE</code> for available trace output options.</p>
+</dd>
+<dt class="hdlist1"><code>GIT_LITERAL_PATHSPECS</code></dt>
 <dd>
 <p>Setting this variable to <code>1</code> will cause Git to treat all
 pathspecs literally, rather than as glob patterns. For example,
@@ -1781,22 +1790,22 @@ glob <code>*.c</code> matches. You might want this if you are feeding
 literal paths to Git (e.g., paths previously given to you by
 <code>git ls-tree</code>, <code>--raw</code> diff output, etc).</p>
 </dd>
-<dt class="hdlist1"><em>GIT_GLOB_PATHSPECS</em></dt>
+<dt class="hdlist1"><code>GIT_GLOB_PATHSPECS</code></dt>
 <dd>
 <p>Setting this variable to <code>1</code> will cause Git to treat all
 pathspecs as glob patterns (aka "glob" magic).</p>
 </dd>
-<dt class="hdlist1"><em>GIT_NOGLOB_PATHSPECS</em></dt>
+<dt class="hdlist1"><code>GIT_NOGLOB_PATHSPECS</code></dt>
 <dd>
 <p>Setting this variable to <code>1</code> will cause Git to treat all
 pathspecs as literal (aka "literal" magic).</p>
 </dd>
-<dt class="hdlist1"><em>GIT_ICASE_PATHSPECS</em></dt>
+<dt class="hdlist1"><code>GIT_ICASE_PATHSPECS</code></dt>
 <dd>
 <p>Setting this variable to <code>1</code> will cause Git to treat all
 pathspecs as case-insensitive.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_REFLOG_ACTION</em></dt>
+<dt class="hdlist1"><code>GIT_REFLOG_ACTION</code></dt>
 <dd>
 <p>When a ref is updated, reflog entries are created to keep
 track of the reason why the ref was updated (which is
@@ -1807,7 +1816,7 @@ helper function in <code>git-sh-setup</code> to set its name to this
 variable when it is invoked as the top level command by the
 end user, to be recorded in the body of the reflog.</p>
 </dd>
-<dt class="hdlist1"><em>GIT_REF_PARANOIA</em></dt>
+<dt class="hdlist1"><code>GIT_REF_PARANOIA</code></dt>
 <dd>
 <p>If set to <code>1</code>, include broken or badly named refs when iterating
 over lists of refs. In a normal, non-corrupted repository, this
@@ -1819,7 +1828,7 @@ it yourself unless you want to be paranoid about making sure
 an operation has touched every ref (e.g., because you are
 cloning a repository to make a backup).</p>
 </dd>
-<dt class="hdlist1"><em>GIT_ALLOW_PROTOCOL</em></dt>
+<dt class="hdlist1"><code>GIT_ALLOW_PROTOCOL</code></dt>
 <dd>
 <p>If set, provide a colon-separated list of protocols which are
 allowed to be used with fetch/push/clone. This is useful to
@@ -2002,7 +2011,7 @@ subscribed to the list to send a message there.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:21 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:01 W. Europe Daylight Time
 </div>
 </div>
 </body>

@@ -477,7 +477,7 @@ the repository to another place if --separate-git-dir is given).</p>
 </dd>
 <dt class="hdlist1">--bare</dt>
 <dd>
-<p>Create a bare repository. If GIT_DIR environment is not set, it is set to the
+<p>Create a bare repository. If <code>GIT_DIR</code> environment is not set, it is set to the
 current working directory.</p>
 </dd>
 <dt class="hdlist1">--template=&lt;template_directory&gt;</dt>
@@ -585,7 +585,14 @@ the <code>$GIT_DIR</code> after it is created.</p>
 </div>
 <div class="paragraph">
 <p>The default template directory includes some directory structure, suggested
-"exclude patterns" (see <a href="gitignore.html">gitignore</a>(5)), and sample hook files (see <a href="githooks.html">githooks</a>(5)).</p>
+"exclude patterns" (see <a href="gitignore.html">gitignore</a>(5)), and sample hook files.</p>
+</div>
+<div class="paragraph">
+<p>The sample hooks are all disabled by default, To enable one of the
+sample hooks rename it by removing its <code>.sample</code> suffix.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="githooks.html">githooks</a>(5) for more general info on hook execution.</p>
 </div>
 </div>
 </div>
@@ -633,7 +640,7 @@ $ git commit    <b class="conum">(3)</b></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

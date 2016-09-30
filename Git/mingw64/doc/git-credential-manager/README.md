@@ -1,6 +1,6 @@
 # Git Credential Manager for Windows [![Build status](https://ci.appveyor.com/api/projects/status/jl6oe1thiwv5s52o/branch/master?svg=true)](https://ci.appveyor.com/project/whoisj/git-credential-manager-for-windows/branch/master)
 
-The [Git Credential Manager for Windows](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) (GCM) provides secure Git credential storage for Windows. It's the successor to the [Windows Credential Store for Git](https://gitcredentialstore.codeplex.com/) (git-credential-winstore), which is no longer maintained. Compared to Git's built-in credential storage for Windows ([wincred](https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage)), which provides single-factor authentication support working on any HTTP enabled Git repository, GCM provides multi-factor authentication support for [Visual Studio Team Services](http://www.visualstudio.com/), [Team Foundation Server](#q-i-thought-microsoft-was-maintaining-this-why-does-the-gcm-not-work-as-expected-with-tfs), and GitHub.
+The [Git Credential Manager for Windows](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) (GCM) provides secure Git credential storage for Windows. It's the successor to the [Windows Credential Store for Git](https://gitcredentialstore.codeplex.com/) (git-credential-winstore), which is no longer maintained. Compared to Git's built-in credential storage for Windows ([wincred](https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage)), which provides single-factor authentication support working on any HTTP enabled Git repository, GCM provides multi-factor authentication support for [Visual Studio Team Services](https://www.visualstudio.com/), [Team Foundation Server](#q-i-thought-microsoft-was-maintaining-this-why-does-the-gcm-not-work-as-expected-with-tfs), and GitHub.
 
 This project includes:
 
@@ -22,7 +22,7 @@ When prompted to select your terminal emulator for Git Bash you should choose th
 
 ## How to use
 
-You don't. It [magically](https://github.com/Microsoft/Git-Credential-Manager-for-Windows/issues/31) works when credentials are needed. For example, when pushing to [Visual Studio Team Services](http://www.visualstudio.com), it automatically opens a window and initializes an oauth2 flow to get your token.
+You don't. It [magically](https://github.com/Microsoft/Git-Credential-Manager-for-Windows/issues/31) works when credentials are needed. For example, when pushing to [Visual Studio Team Services](https://www.visualstudio.com), it automatically opens a window and initializes an oauth2 flow to get your token.
 
 ### Manual Installation
 
@@ -46,15 +46,19 @@ Most likely, your environment is not configured correctly. You can verify that y
 
 Most likely reason is that your GUI “shells out” to git.exe to perform Git operations. When it does so, it cannot respond to the command line prompts for username and password like a real user can. To avoid being asked for your credentials on the command line, and instead be asked via a modal dialog you’ll need to configure the Credential Manager.
 
-1. Decide if you want this to be a global setting (all of your repos) or a local setting (just one repo).
+1. Decide if you want this to be a global setting (all of your repositories) or a local setting (just one repository).
 2. Start your favorite shell. (cmd, powershell, bash, etc.)
 3. Update your settings, so that Git Credential Manager knows to display a dialog and not prompt at the command line:
   * If you’ve decided this is a global setting run `git config --global credential.modalprompt true`.
-  * If you’ve decided this a per repo setting, `cd` to your repo and in that repo run `git config credential.modalprompt true`.
+  * If you’ve decided this a per repository setting, `cd` to your repo and in that repo run `git config credential.modalprompt true`.
 
 ### Q: Why am I not seeing my SSH keys being saved?
 
 The Git Credential Manager does not *yet* support secure storage for SSH keys. It is something we hope to implement, but it has not been a priority. If you feel otherwise, please comment on the [SSH Key support issue](https://github.com/Microsoft/Git-Credential-Manager-for-Windows/issues/25) which is already open.
+
+### Q: Is there a NuGet Package available?
+
+Yes there is: <https://www.nuget.org/packages/Microsoft.Alm.Authentication>. It only supports the core authentication library, but if you're looking to extend the GCM then it is likely exactly what you're after.
 
 ### Q: Why doesn’t Git Credential Manager work on Windows XP, Mac OS, or Linux?
 
@@ -62,7 +66,7 @@ The Git Credential Manager does not work on Windows XP, Max OS, or Linux because
 
 ### Q: Will there ever be support for Windows XP, Mac OS, or Linux?
 
-We can safely say that we have no interest in supporting Windows XP. Even [Microsoft has ended support for Windows XP](http://windows.microsoft.com/en-us/windows/end-support-help). Support for Mac OS and Linux are handled by [Microsoft Git Credential Manager for Mac and Liunx](https://github.com/Microsoft/Git-Credential-Manager-for-Mac-and-Linux).
+We can safely say that we have no interest in supporting Windows XP. Even [Microsoft has ended support for Windows XP](https://windows.microsoft.com/en-us/windows/end-support-help). Support for Mac OS and Linux are handled by [Microsoft Git Credential Manager for Mac and Linux](https://github.com/Microsoft/Git-Credential-Manager-for-Mac-and-Linux).
 
 ### Q: Why is my distribution/version of Git not supported? Why is Git for Windows favored?
 
@@ -79,7 +83,13 @@ Team Foundation Server, when deployed on a corporate Active Directory, uses the 
 
 Git can be convinced to "forward" domain credentials by supplying a blank credentials (username and password). Since, by default, the GCM doesn't allow for a blank credentials, you will need to configure it to allow for them. To do so, update your Git configuration by running `git config --global credential.tfs.fabrikam.com.integrated true`.
 
-Once the updated, the new configuration tells the GCM to only forward domain credentials. If you set `credential.integrated true`, every domain will be assumed to support domain credentials. Most likely, this is **not** what you want. Therefore, it strongly suggested that you restrict the configuration setting to the URL of your TFS Git host.
+Once updated, the new configuration tells the GCM to only forward domain credentials. If you set `credential.integrated true`, every domain will be assumed to support domain credentials. Most likely, this is **not** what you want. Therefore, it strongly suggested that you restrict the configuration setting to the URL of your TFS Git host.
+
+### Q: Why doesn't SourceTree use the credentials in the GCM?
+
+You need to configure SourceTree to use the version of Git installed for the entire system. By default, SourceTree uses a local copy of portable Git.
+
+To fix this go to Tools -> Options -> Git and click the "Use System Git" button. This works in v1.8.3.0 of SourceTree.
 
 ## Build agents
 
@@ -124,6 +134,10 @@ git config --global credential.writelog true
 ```
 
 Log files will be written to the repo's local `.git/` folder.
+
+## Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## License
 

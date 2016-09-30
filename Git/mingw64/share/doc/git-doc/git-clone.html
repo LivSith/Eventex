@@ -435,8 +435,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 	  [-o &lt;name&gt;] [-b &lt;name&gt;] [-u &lt;upload-pack&gt;] [--reference &lt;repository&gt;]
 	  [--dissociate] [--separate-git-dir &lt;git dir&gt;]
 	  [--depth &lt;depth&gt;] [--[no-]single-branch]
-	  [--recursive | --recurse-submodules] [--] &lt;repository&gt;
-	  [&lt;directory&gt;]</pre>
+	  [--recursive | --recurse-submodules] [--[no-]shallow-submodules]
+	  [--jobs &lt;n&gt;] [--] &lt;repository&gt; [&lt;directory&gt;]</pre>
 </div>
 </div>
 </div>
@@ -643,7 +643,8 @@ additional fetch refspecs to the origin remote.</p>
 <p>Create a <em>shallow</em> clone with a history truncated to the
 specified number of commits. Implies <code>--single-branch</code> unless
 <code>--no-single-branch</code> is given to fetch the histories near the
-tips of all branches.</p>
+tips of all branches. If you want to clone submodules shallowly,
+also pass <code>--shallow-submodules</code>.</p>
 </dd>
 <dt class="hdlist1">--[no-]single-branch</dt>
 <dd>
@@ -666,6 +667,10 @@ the clone is finished. This option is ignored if the cloned
 repository does not have a worktree/checkout (i.e. if any of
 <code>--no-checkout</code>/<code>-n</code>, <code>--bare</code>, or <code>--mirror</code> is given)</p>
 </dd>
+<dt class="hdlist1">--[no-]shallow-submodules</dt>
+<dd>
+<p>All submodules which are cloned will be shallow with a depth of 1.</p>
+</dd>
 <dt class="hdlist1">--separate-git-dir=&lt;git dir&gt;</dt>
 <dd>
 <p>Instead of placing the cloned repository where it is supposed
@@ -673,6 +678,12 @@ to be, place the cloned repository at the specified directory,
 then make a filesystem-agnostic Git symbolic link to there.
 The result is Git repository can be separated from working
 tree.</p>
+</dd>
+<dt class="hdlist1">-j &lt;n&gt;</dt>
+<dt class="hdlist1">--jobs &lt;n&gt;</dt>
+<dd>
+<p>The number of submodules fetched at the same time.
+Defaults to the <code>submodule.fetchJobs</code> option.</p>
 </dd>
 <dt class="hdlist1">&lt;repository&gt;</dt>
 <dd>
@@ -909,7 +920,7 @@ $ cd my-linux</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

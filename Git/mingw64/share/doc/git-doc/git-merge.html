@@ -432,6 +432,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="verseblock">
 <pre class="content"><em>git merge</em> [-n] [--stat] [--no-commit] [--squash] [--[no-]edit]
 	[-s &lt;strategy&gt;] [-X &lt;strategy-option&gt;] [-S[&lt;keyid&gt;]]
+	[--[no-]allow-unrelated-histories]
 	[--[no-]rerere-autoupdate] [-m &lt;msg&gt;] [&lt;commit&gt;&#8230;&#8203;]
 <em>git merge</em> &lt;msg&gt; HEAD &lt;commit&gt;&#8230;&#8203;
 <em>git merge</em> --abort</pre>
@@ -603,8 +604,11 @@ strategy.</p>
 <dt class="hdlist1">--verify-signatures</dt>
 <dt class="hdlist1">--no-verify-signatures</dt>
 <dd>
-<p>Verify that the commits being merged have good and trusted GPG signatures
-and abort the merge in case they do not.</p>
+<p>Verify that the tip commit of the side branch being merged is
+signed with a valid key, i.e. a key that has a valid uid: in the
+default trust model, this means the signing key has been signed by
+a trusted key.  If the tip commit of the side branch is not signed
+with a valid key, the merge is aborted.</p>
 </dd>
 <dt class="hdlist1">--summary</dt>
 <dt class="hdlist1">--no-summary</dt>
@@ -629,6 +633,15 @@ removed in the future.</p>
 progress is shown if standard error is connected to a terminal.
 Note that not all merge strategies may support progress
 reporting.</p>
+</dd>
+<dt class="hdlist1">--allow-unrelated-histories</dt>
+<dd>
+<p>By default, <code>git merge</code> command refuses to merge histories
+that do not share a common ancestor.  This option can be
+used to override this safety when merging histories of two
+projects that started their lives independently. As that is
+a very rare occasion, no configuration variable to enable
+this by default exists and will not be added.</p>
 </dd>
 <dt class="hdlist1">-S[&lt;keyid&gt;]</dt>
 <dt class="hdlist1">--gpg-sign[=&lt;keyid&gt;]</dt>
@@ -1258,6 +1271,9 @@ that a corresponding mergetool.&lt;tool&gt;.cmd variable is defined.</p>
 <p>emerge</p>
 </li>
 <li>
+<p>examdiff</p>
+</li>
+<li>
 <p>gvimdiff</p>
 </li>
 <li>
@@ -1309,7 +1325,7 @@ strategy.  Level 0 outputs nothing except a final error
 message if conflicts were detected. Level 1 outputs only
 conflicts, 2 outputs conflicts and file changes.  Level 5 and
 above outputs debugging information.  The default is level 2.
-Can be overridden by the <em>GIT_MERGE_VERBOSITY</em> environment variable.</p>
+Can be overridden by the <code>GIT_MERGE_VERBOSITY</code> environment variable.</p>
 </dd>
 <dt class="hdlist1">merge.&lt;driver&gt;.name</dt>
 <dd>
@@ -1361,7 +1377,7 @@ values containing whitespace characters are currently not supported.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

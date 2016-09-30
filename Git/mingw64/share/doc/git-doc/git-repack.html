@@ -464,7 +464,7 @@ engines, disk storage, etc.</p>
 pack everything referenced into a single pack.
 Especially useful when packing a repository that is used
 for private development. Use
-with <em>-d</em>.  This will clean up the objects that <code>git prune</code>
+with <code>-d</code>.  This will clean up the objects that <code>git prune</code>
 leaves behind, but <code>git fsck --full --dangling</code> shows as
 dangling.</p>
 <div class="paragraph">
@@ -475,7 +475,7 @@ other objects in that pack they already have locally.</p>
 </dd>
 <dt class="hdlist1">-A</dt>
 <dd>
-<p>Same as <code>-a</code>, unless <em>-d</em> is used.  Then any unreachable
+<p>Same as <code>-a</code>, unless <code>-d</code> is used.  Then any unreachable
 objects in a previous pack become loose, unpacked objects,
 instead of being left in the old pack.  Unreachable objects
 are never intentionally added to a pack, even when repacking.
@@ -541,14 +541,17 @@ repositories with a mix of large and small objects to not run
 out of memory with a large window, but still be able to take
 advantage of the large window for the smaller objects.  The
 size can be suffixed with "k", "m", or "g".
-<code>--window-memory=0</code> makes memory usage unlimited, which is the
-default.</p>
+<code>--window-memory=0</code> makes memory usage unlimited.  The default
+is taken from the <code>pack.windowMemory</code> configuration variable.
+Note that the actual memory usage will be the limit multiplied
+by the number of threads used by <a href="git-pack-objects.html">git-pack-objects</a>(1).</p>
 </dd>
 <dt class="hdlist1">--max-pack-size=&lt;n&gt;</dt>
 <dd>
 <p>Maximum size of each output pack file. The size can be suffixed with
 "k", "m", or "g". The minimum size allowed is limited to 1 MiB.
-If specified,  multiple packfiles may be created.
+If specified, multiple packfiles may be created, which also
+prevents the creation of a bitmap index.
 The default is unlimited, unless the config variable
 <code>pack.packSizeLimit</code> is set.</p>
 </dd>
@@ -558,7 +561,8 @@ The default is unlimited, unless the config variable
 <p>Write a reachability bitmap index as part of the repack. This
 only makes sense when used with <code>-a</code> or <code>-A</code>, as the bitmaps
 must be able to refer to all reachable objects. This option
-overrides the setting of <code>pack.writeBitmaps</code>.</p>
+overrides the setting of <code>repack.writeBitmaps</code>.  This option
+has no effect if multiple packfiles are created.</p>
 </dd>
 <dt class="hdlist1">--pack-kept-objects</dt>
 <dd>
@@ -567,8 +571,23 @@ still do not delete <code>.keep</code> packs after <code>pack-objects</code> fin
 This means that we may duplicate objects, but this makes the
 option safe to use when there are concurrent pushes or fetches.
 This option is generally only useful if you are writing bitmaps
-with <code>-b</code> or <code>pack.writeBitmaps</code>, as it ensures that the
+with <code>-b</code> or <code>repack.writeBitmaps</code>, as it ensures that the
 bitmapped packfile has the necessary objects.</p>
+</dd>
+<dt class="hdlist1">--unpack-unreachable=&lt;when&gt;</dt>
+<dd>
+<p>When loosening unreachable objects, do not bother loosening any
+objects older than <code>&lt;when&gt;</code>. This can be used to optimize out
+the write of any objects that would be immediately pruned by
+a follow-up <code>git prune</code>.</p>
+</dd>
+<dt class="hdlist1">-k</dt>
+<dt class="hdlist1">--keep-unreachable</dt>
+<dd>
+<p>When used with <code>-ad</code>, any unreachable objects from existing
+packs will be appended to the end of the packfile instead of
+being removed. In addition, any unreachable loose objects will
+be packed (and their loose counterparts removed).</p>
 </dd>
 </dl>
 </div>
@@ -610,7 +629,7 @@ as needed in that case.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:21 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

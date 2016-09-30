@@ -508,7 +508,7 @@ people using 80-column terminals.</p>
 <dd>
 <p>Show the full 40-byte hexadecimal commit object name. This negates
 <code>--abbrev-commit</code> and those options which imply it such as
-"--oneline". It also overrides the <em>log.abbrevCommit</em> variable.</p>
+"--oneline". It also overrides the <code>log.abbrevCommit</code> variable.</p>
 </dd>
 <dt class="hdlist1">--oneline</dt>
 <dd>
@@ -526,6 +526,22 @@ in <code>X</code> and we are outputting in <code>X</code>, we will output the ob
 verbatim; this means that invalid sequences in the original
 commit may be copied to the output.</p>
 </dd>
+<dt class="hdlist1">--expand-tabs=&lt;n&gt;</dt>
+<dt class="hdlist1">--expand-tabs</dt>
+<dt class="hdlist1">--no-expand-tabs</dt>
+<dd>
+<p>Perform a tab expansion (replace each tab with enough spaces
+to fill to the next display column that is multiple of <em>&lt;n&gt;</em>)
+in the log message before showing it in the output.
+<code>--expand-tabs</code> is a short-hand for <code>--expand-tabs=8</code>, and
+<code>--no-expand-tabs</code> is a short-hand for <code>--expand-tabs=0</code>,
+which disables tab expansion.</p>
+<div class="paragraph">
+<p>By default, tabs are expanded in pretty formats that indent the log
+message by 4 spaces (i.e.  <em>medium</em>, which is the default, <em>full</em>,
+and <em>fuller</em>).</p>
+</div>
+</dd>
 <dt class="hdlist1">--notes[=&lt;treeish&gt;]</dt>
 <dd>
 <p>Show the notes (see <a href="git-notes.html">git-notes</a>(1)) that annotate the
@@ -535,7 +551,7 @@ there is no <code>--pretty</code>, <code>--format</code>, or <code>--oneline</co
 on the command line.</p>
 <div class="paragraph">
 <p>By default, the notes shown are from the notes refs listed in the
-<em>core.notesRef</em> and <em>notes.displayRef</em> variables (or corresponding
+<code>core.notesRef</code> and <code>notes.displayRef</code> variables (or corresponding
 environment overrides). See <a href="git-config.html">git-config</a>(1) for more details.</p>
 </div>
 <div class="paragraph">
@@ -848,8 +864,8 @@ or <a href="git-blame.html">git-blame</a>(1))</p>
 <p><em>%GG</em>: raw verification message from GPG for a signed commit</p>
 </li>
 <li>
-<p><em>%G?</em>: show "G" for a Good signature, "B" for a Bad signature, "U" for a good,
-untrusted signature and "N" for no signature</p>
+<p><em>%G?</em>: show "G" for a good (valid) signature, "B" for a bad signature,
+"U" for a good signature with unknown validity and "N" for no signature</p>
 </li>
 <li>
 <p><em>%GS</em>: show the name of the signer for a signed commit</p>
@@ -858,10 +874,16 @@ untrusted signature and "N" for no signature</p>
 <p><em>%GK</em>: show the key used to sign a signed commit</p>
 </li>
 <li>
-<p><em>%gD</em>: reflog selector, e.g., <code>refs/stash@{1}</code></p>
+<p><em>%gD</em>: reflog selector, e.g., <code>refs/stash@{1}</code> or
+<code>refs/stash@{2 minutes ago</code>}; the format follows the rules described
+for the <code>-g</code> option. The portion before the <code>@</code> is the refname as
+given on the command line (so <code>git log -g refs/heads/master</code> would
+yield <code>refs/heads/master@{0}</code>).</p>
 </li>
 <li>
-<p><em>%gd</em>: shortened reflog selector, e.g., <code>stash@{1}</code></p>
+<p><em>%gd</em>: shortened reflog selector; same as <code>%gD</code>, but the refname
+portion is shortened for human readability (so <code>refs/heads/master</code>
+becomes just <code>master</code>).</p>
 </li>
 <li>
 <p><em>%gn</em>: reflog identity name</p>
@@ -1054,6 +1076,14 @@ itself in raw format, which you can achieve with
 <dt class="hdlist1">--patch-with-raw</dt>
 <dd>
 <p>Synonym for <code>-p --raw</code>.</p>
+</dd>
+<dt class="hdlist1">--compaction-heuristic</dt>
+<dt class="hdlist1">--no-compaction-heuristic</dt>
+<dd>
+<p>These are to help debugging and tuning an experimental
+heuristic (which is off by default) that shifts the hunk
+boundary in an attempt to make the resulting patch easier
+to read.</p>
 </dd>
 <dt class="hdlist1">--minimal</dt>
 <dd>
@@ -1313,7 +1343,7 @@ and, correspondingly, show differences character by character.</p>
 </div>
 <div class="paragraph">
 <p>The regex can also be set via a diff driver or configuration option, see
-<a href="gitattributes.html">gitattributes</a>(1) or <a href="git-config.html">git-config</a>(1).  Giving it explicitly
+<a href="gitattributes.html">gitattributes</a>(5) or <a href="git-config.html">git-config</a>(1).  Giving it explicitly
 overrides any diff driver or configuration setting.  Diff drivers
 override configuration settings.</p>
 </div>
@@ -1330,8 +1360,8 @@ file gives the default to do so.</p>
 </dd>
 <dt class="hdlist1">--check</dt>
 <dd>
-<p>Warn if changes introduce whitespace errors.  What are
-considered whitespace errors is controlled by <code>core.whitespace</code>
+<p>Warn if changes introduce conflict markers or whitespace errors.
+What are considered whitespace errors is controlled by <code>core.whitespace</code>
 configuration.  By default, trailing whitespaces (including
 lines that solely consist of whitespaces) and a space character
 that is immediately followed by a tab character inside the
@@ -1462,6 +1492,10 @@ When <code>*</code> (All-or-none) is added to the combination, all
 paths are selected if there is any file that matches
 other criteria in the comparison; if there is no file
 that matches other criteria, nothing is selected.</p>
+<div class="paragraph">
+<p>Also, these upper-case letters can be downcased to exclude.  E.g.
+<code>--diff-filter=ad</code> excludes added and deleted paths.</p>
+</div>
 </dd>
 <dt class="hdlist1">-S&lt;string&gt;</dt>
 <dd>
@@ -1633,11 +1667,11 @@ the behavior until 1.7.0). Using "all" hides all changes to submodules.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>When "git-diff-index", "git-diff-tree", or "git-diff-files" are run
-with a <em>-p</em> option, "git diff" without the <em>--raw</em> option, or
+with a <code>-p</code> option, "git diff" without the <code>--raw</code> option, or
 "git log" with the "-p" option, they
 do not produce the output described above; instead they produce a
 patch file.  You can customize the creation of such patches via the
-GIT_EXTERNAL_DIFF and the GIT_DIFF_OPTS environment variables.</p>
+<code>GIT_EXTERNAL_DIFF</code> and the <code>GIT_DIFF_OPTS</code> environment variables.</p>
 </div>
 <div class="paragraph">
 <p>What the -p option produces is slightly different from the traditional
@@ -1776,14 +1810,14 @@ index fabadb8,cc95eb0..4866510
 <ol class="arabic">
 <li>
 <p>It is preceded with a "git diff" header, that looks like
-this (when <em>-c</em> option is used):</p>
+this (when <code>-c</code> option is used):</p>
 <div class="literalblock">
 <div class="content">
 <pre>diff --combined file</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>or like this (when <em>--cc</em> option is used):</p>
+<p>or like this (when <code>--cc</code> option is used):</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2017,7 +2051,7 @@ reversible operation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:21 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

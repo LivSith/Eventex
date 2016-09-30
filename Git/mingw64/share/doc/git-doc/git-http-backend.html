@@ -448,7 +448,7 @@ pushing using the smart HTTP protocol.</p>
 <p>It verifies that the directory has the magic file
 "git-daemon-export-ok", and it will refuse to export any Git directory
 that hasn&#8217;t explicitly been marked for export this way (unless the
-GIT_HTTP_EXPORT_ALL environmental variable is set).</p>
+<code>GIT_HTTP_EXPORT_ALL</code> environmental variable is set).</p>
 </div>
 <div class="paragraph">
 <p>By default, only the <code>upload-pack</code> service is enabled, which serves
@@ -720,7 +720,7 @@ $HTTP["url"] =~ "^/git/.*/git-receive-pack$" {
 <h2 id="_environment">ENVIRONMENT</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>git http-backend</em> relies upon the CGI environment variables set
+<p><em>git http-backend</em> relies upon the <code>CGI</code> environment variables set
 by the invoking web server, including:</p>
 </div>
 <div class="ulist">
@@ -746,7 +746,7 @@ by the invoking web server, including:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The GIT_HTTP_EXPORT_ALL environmental variable may be passed to
+<p>The <code>GIT_HTTP_EXPORT_ALL</code> environmental variable may be passed to
 <em>git-http-backend</em> to bypass the check for the "git-daemon-export-ok"
 file in each repository before allowing export of that repository.</p>
 </div>
@@ -767,7 +767,7 @@ ensuring that any reflogs created by <em>git-receive-pack</em> contain some
 identifying information of the remote user who performed the push.</p>
 </div>
 <div class="paragraph">
-<p>All CGI environment variables are available to each of the hooks
+<p>All <code>CGI</code> environment variables are available to each of the hooks
 invoked by the <em>git-receive-pack</em>.</p>
 </div>
 </div>
@@ -783,7 +783,7 @@ invoked by the <em>git-receive-pack</em>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

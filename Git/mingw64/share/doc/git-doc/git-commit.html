@@ -521,7 +521,7 @@ when creating the commit.</p>
 <dt class="hdlist1">-c &lt;commit&gt;</dt>
 <dt class="hdlist1">--reedit-message=&lt;commit&gt;</dt>
 <dd>
-<p>Like <em>-C</em>, but with <em>-c</em> the editor is invoked, so that
+<p>Like <em>-C</em>, but with <code>-c</code> the editor is invoked, so that
 the user can further edit the commit message.</p>
 </dd>
 <dt class="hdlist1">--fixup=&lt;commit&gt;</dt>
@@ -680,7 +680,7 @@ Otherwise <code>whitespace</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The default can be changed by the <em>commit.cleanup</em> configuration
+<p>The default can be changed by the <code>commit.cleanup</code> configuration
 variable (see <a href="git-config.html">git-config</a>(1)).</p>
 </div>
 </dd>
@@ -753,7 +753,7 @@ command line, disregarding any contents that have been
 staged for other paths. This is the default mode of operation of
 <em>git commit</em> if any paths are given on the command line,
 in which case this option can be omitted.
-If this option is specified together with <em>--amend</em>, then
+If this option is specified together with <code>--amend</code>, then
 no paths need to be specified, which can be used to amend
 the last commit without committing changes that have
 already been staged.</p>
@@ -797,7 +797,8 @@ template to help the user describe the commit by reminding
 what changes the commit has.
 Note that this diff output doesn&#8217;t have its
 lines prefixed with <em>#</em>. This diff will not be a part
-of the commit message.</p>
+of the commit message. See the <code>commit.verbose</code> configuration
+variable in <a href="git-config.html">git-config</a>(1).</p>
 <div class="paragraph">
 <p>If specified twice, show in addition the unified diff between
 what would be committed and the worktree files, i.e. the unstaged
@@ -860,7 +861,7 @@ of what have been staged before.</p>
 <h2 id="_date_formats">DATE FORMATS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The GIT_AUTHOR_DATE, GIT_COMMITTER_DATE environment variables
+<p>The <code>GIT_AUTHOR_DATE</code>, <code>GIT_COMMITTER_DATE</code> environment variables
 and the <code>--date</code> option
 support the following date formats:</p>
 </div>
@@ -1122,8 +1123,8 @@ reversible operation.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The editor used to edit the commit log message will be chosen from the
-GIT_EDITOR environment variable, the core.editor configuration variable, the
-VISUAL environment variable, or the EDITOR environment variable (in that
+<code>GIT_EDITOR</code> environment variable, the core.editor configuration variable, the
+<code>VISUAL</code> environment variable, or the <code>EDITOR</code> environment variable (in that
 order).  See <a href="git-var.html">git-var</a>(1) for details.</p>
 </div>
 </div>
@@ -1178,7 +1179,7 @@ overwritten by the next invocation of <code>git commit</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

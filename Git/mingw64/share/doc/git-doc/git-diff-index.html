@@ -479,6 +479,14 @@ This is the default.</p>
 <dd>
 <p>Synonym for <code>-p --raw</code>.</p>
 </dd>
+<dt class="hdlist1">--compaction-heuristic</dt>
+<dt class="hdlist1">--no-compaction-heuristic</dt>
+<dd>
+<p>These are to help debugging and tuning an experimental
+heuristic (which is off by default) that shifts the hunk
+boundary in an attempt to make the resulting patch easier
+to read.</p>
+</dd>
 <dt class="hdlist1">--minimal</dt>
 <dd>
 <p>Spend extra time to make sure the smallest possible
@@ -734,7 +742,7 @@ and, correspondingly, show differences character by character.</p>
 </div>
 <div class="paragraph">
 <p>The regex can also be set via a diff driver or configuration option, see
-<a href="gitattributes.html">gitattributes</a>(1) or <a href="git-config.html">git-config</a>(1).  Giving it explicitly
+<a href="gitattributes.html">gitattributes</a>(5) or <a href="git-config.html">git-config</a>(1).  Giving it explicitly
 overrides any diff driver or configuration setting.  Diff drivers
 override configuration settings.</p>
 </div>
@@ -751,8 +759,8 @@ file gives the default to do so.</p>
 </dd>
 <dt class="hdlist1">--check</dt>
 <dd>
-<p>Warn if changes introduce whitespace errors.  What are
-considered whitespace errors is controlled by <code>core.whitespace</code>
+<p>Warn if changes introduce conflict markers or whitespace errors.
+What are considered whitespace errors is controlled by <code>core.whitespace</code>
 configuration.  By default, trailing whitespaces (including
 lines that solely consist of whitespaces) and a space character
 that is immediately followed by a tab character inside the
@@ -881,6 +889,10 @@ When <code>*</code> (All-or-none) is added to the combination, all
 paths are selected if there is any file that matches
 other criteria in the comparison; if there is no file
 that matches other criteria, nothing is selected.</p>
+<div class="paragraph">
+<p>Also, these upper-case letters can be downcased to exclude.  E.g.
+<code>--diff-filter=ad</code> excludes added and deleted paths.</p>
+</div>
 </dd>
 <dt class="hdlist1">-S&lt;string&gt;</dt>
 <dd>
@@ -1161,19 +1173,19 @@ unmerged       :000000 000000 0000000... 0000000... U file6</pre>
 <p>status, followed by optional "score" number.</p>
 </li>
 <li>
-<p>a tab or a NUL when <em>-z</em> option is used.</p>
+<p>a tab or a NUL when <code>-z</code> option is used.</p>
 </li>
 <li>
 <p>path for "src"</p>
 </li>
 <li>
-<p>a tab or a NUL when <em>-z</em> option is used; only exists for C or R.</p>
+<p>a tab or a NUL when <code>-z</code> option is used; only exists for C or R.</p>
 </li>
 <li>
 <p>path for "dst"; only exists for C or R.</p>
 </li>
 <li>
-<p>an LF or a NUL when <em>-z</em> option is used, to terminate the record.</p>
+<p>an LF or a NUL when <code>-z</code> option is used, to terminate the record.</p>
 </li>
 </ol>
 </div>
@@ -1239,7 +1251,7 @@ respectively.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>"git-diff-tree", "git-diff-files" and "git-diff --raw"
-can take <em>-c</em> or <em>--cc</em> option
+can take <code>-c</code> or <code>--cc</code> option
 to generate diff output also for merge commits.  The output differs
 from the format described above in the following way:</p>
 </div>
@@ -1281,11 +1293,11 @@ all parents.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>When "git-diff-index", "git-diff-tree", or "git-diff-files" are run
-with a <em>-p</em> option, "git diff" without the <em>--raw</em> option, or
+with a <code>-p</code> option, "git diff" without the <code>--raw</code> option, or
 "git log" with the "-p" option, they
 do not produce the output described above; instead they produce a
 patch file.  You can customize the creation of such patches via the
-GIT_EXTERNAL_DIFF and the GIT_DIFF_OPTS environment variables.</p>
+<code>GIT_EXTERNAL_DIFF</code> and the <code>GIT_DIFF_OPTS</code> environment variables.</p>
 </div>
 <div class="paragraph">
 <p>What the -p option produces is slightly different from the traditional
@@ -1424,14 +1436,14 @@ index fabadb8,cc95eb0..4866510
 <ol class="arabic">
 <li>
 <p>It is preceded with a "git diff" header, that looks like
-this (when <em>-c</em> option is used):</p>
+this (when <code>-c</code> option is used):</p>
 <div class="literalblock">
 <div class="content">
 <pre>diff --combined file</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>or like this (when <em>--cc</em> option is used):</p>
+<p>or like this (when <code>--cc</code> option is used):</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1636,7 +1648,7 @@ the pathname, but if that is <code>NUL</code>, the record will show two paths.</
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can choose whether you want to trust the index file entirely
-(using the <em>--cached</em> flag) or ask the diff logic to show any files
+(using the <code>--cached</code> flag) or ask the diff logic to show any files
 that don&#8217;t match the stat state as being "tentatively changed".  Both
 of these operations are very useful indeed.</p>
 </div>
@@ -1646,7 +1658,7 @@ of these operations are very useful indeed.</p>
 <h2 id="_cached_mode">Cached Mode</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If <em>--cached</em> is specified, it allows you to ask:</p>
+<p>If <code>--cached</code> is specified, it allows you to ask:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1777,7 +1789,7 @@ always have the special all-zero sha1.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

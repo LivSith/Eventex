@@ -635,8 +635,7 @@ not accessible in the working tree.</p>
 <div class="paragraph">
 <p>&lt;eolattr&gt; is the attribute that is used when checking out or committing,
 it is either "", "-text", "text", "text=auto", "text eol=lf", "text eol=crlf".
-Note: Currently Git does not support "text=auto eol=lf" or "text=auto eol=crlf",
-that may change in the future.</p>
+Since Git 2.10 "text=auto eol=lf" and "text=auto eol=crlf" are supported.</p>
 </div>
 <div class="paragraph">
 <p>Both the &lt;eolinfo&gt; in the index ("i/&lt;eolinfo&gt;")
@@ -661,7 +660,7 @@ specified criteria are shown.</p>
 <h2 id="_output">Output</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>git ls-files</em> just outputs the filenames unless <em>--stage</em> is specified in
+<p><em>git ls-files</em> just outputs the filenames unless <code>--stage</code> is specified in
 which case it outputs:</p>
 </div>
 <div class="literalblock">
@@ -752,7 +751,7 @@ pattern file appears in.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:20 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>

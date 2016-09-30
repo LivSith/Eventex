@@ -434,7 +434,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 	  [--apply] [--no-add] [--build-fake-ancestor=&lt;file&gt;] [-R | --reverse]
 	  [--allow-binary-replacement | --binary] [--reject] [-z]
 	  [-p&lt;n&gt;] [-C&lt;n&gt;] [--inaccurate-eof] [--recount] [--cached]
-	  [--ignore-space-change | --ignore-whitespace ]
+	  [--ignore-space-change | --ignore-whitespace]
 	  [--whitespace=(nowarn|warn|fix|error|error-all)]
 	  [--exclude=&lt;path&gt;] [--include=&lt;path&gt;] [--directory=&lt;root&gt;]
 	  [--verbose] [--unsafe-paths] [&lt;patch&gt;&#8230;&#8203;]</pre>
@@ -446,6 +446,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="paragraph">
 <p>Reads the supplied diff output (i.e. "a patch") and applies it to files.
+When running from a subdirectory in a repository, patched paths
+outside the directory are ignored.
 With the <code>--index</code> option the patch is also applied to the index, and
 with the <code>--cached</code> option the patch is only applied to the index.
 Without these options, the command applies the patch only to files,
@@ -782,7 +784,7 @@ subdirectory is checked and (if possible) updated.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-04 09:14:19 W. Europe Daylight Time
+Last updated 2016-09-03 09:10:00 W. Europe Daylight Time
 </div>
 </div>
 </body>
